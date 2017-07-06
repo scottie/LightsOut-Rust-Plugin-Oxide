@@ -1,0 +1,20 @@
+
+{
+    "name": "LightsOut",
+    "description": "Turn off all lights at night, user must manually turn on again, this allows users on modded server with lots of wood to find houses at night with players in them. Without this mod the fires burn 24/7. Also saves on CPU",
+    "author": "Console (vual, tehvual)",
+    "version": "1.0.0",
+    "configuration": false,
+    "language": "cs",
+    "games": [
+        "rust"
+    ],
+    "keywords": [
+        "oxide",
+        "rust",
+        "lightsout",
+        "camp fire",
+        "furnace",
+        "light"
+    ]
+}
