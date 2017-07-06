@@ -6,7 +6,7 @@
 ///////////////////////////////////////
 
 /**
-Turns all Lights out at night then allows user to turn then back on again.
+Turns all Lights out at night then allows user to turn them back on again.
 This is usfull to save on CPU but was designed for servers that run fast gathering (1000x), it allows users to see
 who is home at night becuase normally the lights will run 24/7 due to the high resource rate.
 **/
@@ -47,7 +47,7 @@ namespace Oxide.Plugins
           if(lightsList.Contains("MessageDone") == false)
           {
             Puts("Fire Burning.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + "|" + oven.ToString());
-            PrintToChat("<color=#ff00ffff>Night time, Fires Buring.... <b>LIGHTS OUT !!</b> time is <color=#0000ffff>" + sky.Cycle.DateTime + "</color Dont forget to /vote ^_*></color>");
+            PrintToChat("Night time, Fires Buring.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + " | Dont forget to /vote ^_*");
             lightsList.Add("MessageDone");
           }
           //DEBUG LINE //PrintToChat(" Is Night: " + sky.IsNight.ToString() + "|" + oven.ToString() + "| RUST Time: " + sky.Cycle.DateTime.ToString("HH:mm:ss")); //DEBUG
