@@ -26,6 +26,8 @@ namespace Oxide.Plugins
         TOD_Sky sky;
         //public List<string> lightsList;
         public List<string> lightsList = new List<string>();
+        bool MessageDone;
+
         void Loaded()
         {
             Puts("Loaded: LightsOut by Console (tehvual, vual)");
@@ -43,15 +45,16 @@ namespace Oxide.Plugins
         }
 
         void OnConsumeFuel(BaseOven oven, Item fuel, ItemModBurnable burnable)
-    		{
-          if(lightsList.Contains("MessageDone") == false)
+    	{
+          if(!MessageDone)
           {
             Puts("Fire Burning.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + "|" + oven.ToString());
-            PrintToChat("Night time, Fires Buring.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + " | Dont forget to /vote ^_*");
+            PrintToChat("Night time, Fires Buring.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + " Dont forget to /vote ^_*");
             lightsList.Add("MessageDone");
+            MessageDone = true;
           }
           //DEBUG LINE //PrintToChat(" Is Night: " + sky.IsNight.ToString() + "|" + oven.ToString() + "| RUST Time: " + sky.Cycle.DateTime.ToString("HH:mm:ss")); //DEBUG
-          //if (sky.Cycle.Hour >= 18 && sky.Cycle.Hour <= 6) // <-- another way to do it with more targeted times ? 
+          //if (sky.Cycle.Hour >= 18 && sky.Cycle.Hour <= 6) // <-- another way to do it with more targeted times ?
           if(sky.IsNight)
             {
               if(lightsList != null)
@@ -68,7 +71,6 @@ namespace Oxide.Plugins
                 {
                   if(lightsList.Count > 0)
                   {
-
                       lightsList.Clear();
                   }
                 }
