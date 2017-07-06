@@ -52,7 +52,7 @@ namespace Oxide.Plugins
           }
           //DEBUG LINE //PrintToChat(" Is Night: " + sky.IsNight.ToString() + "|" + oven.ToString() + "| RUST Time: " + sky.Cycle.DateTime.ToString("HH:mm:ss")); //DEBUG
           //if (sky.Cycle.Hour >= 18 && sky.Cycle.Hour <= 6) // <-- another way to do it with more targeted times ? 
-          if(sky.IsNight == false)
+          if(sky.IsNight)
             {
               if(lightsList != null)
               {
