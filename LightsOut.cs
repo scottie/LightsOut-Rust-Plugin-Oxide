@@ -5,6 +5,7 @@
 //
 ///////////////////////////////////////
 
+
 /**
 Turns all Lights out at night then allows user to turn them back on again.
 This is usfull to save on CPU but was designed for servers that run fast gathering (1000x), it allows users to see
@@ -18,8 +19,8 @@ using Oxide.Core.Libraries.Covalence;
 
 namespace Oxide.Plugins
 {
-    [Info("LightsOut", "Console (tehvual, vual)", "1.0.0")]
-    [Description("Turn off all lights at night, user must manually turn on again, this allows users on modded server with lots of wood to find houses at night with players in them. Without this mod the fires burn 24/7. Also saves on CPU")]
+    [Info("LightsOut", "ConsoleCOWBOY", "1.0.0")]
+    [Description("Turn off all lights at night, user must manually turn on again, this allows users on modded server with lots of wood to find houses at night with players in them.")]
 
     class LightsOut : RustPlugin
     {
@@ -28,28 +29,30 @@ namespace Oxide.Plugins
         public List<string> lightsList = new List<string>();
         bool MessageDone;
 
+
+        void LoadDefaultMessages()
+          {
+              var messages = new Dictionary<string, string>
+              {
+                  {"nightTime", "Night time, Fires Buring.... LIGHTS OUT !! time is {time} Dont forget to /vote ^_*"}
+              };
+
+              lang.RegisterMessages(messages, this);
+          }
+
         void Loaded()
         {
-            Puts("Loaded: LightsOut by Console (tehvual, vual)");
+            Puts("Loaded: LightsOut");
             sky  = TOD_Sky.Instance;
         }
 
-        void Unload()
-        {
-            Puts("Unloaded: LightsOut by Console (tehvual, vual)");
-        }
-
-        protected override void LoadDefaultConfig()
-        {
-            Puts("Default configuration created");
-        }
-
         void OnConsumeFuel(BaseOven oven, Item fuel, ItemModBurnable burnable)
-    	{
+    	  {
           if(!MessageDone)
           {
             Puts("Fire Burning.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + "|" + oven.ToString());
-            PrintToChat("Night time, Fires Buring.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + " Dont forget to /vote ^_*");
+            //PrintToChat("Night time, Fires Buring.... LIGHTS OUT !! time is " + sky.Cycle.DateTime + " Dont forget to /vote ^_*");
+            PrintToChat(lang.GetMessage("nightTime", this).Replace("{time}", sky.Cycle.DateTime.ToString()));
             lightsList.Add("MessageDone");
             MessageDone = true;
           }
@@ -71,7 +74,7 @@ namespace Oxide.Plugins
                 {
                   if(lightsList.Count > 0)
                   {
-                      lightsList.Clear();
+                      lightsList.Clear();                      
                   }
                 }
               }
